@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">AndroidProject</string>
+    <string name="choose_city">Choose a city</string>
+    <string name="choose_way">Choose flight type</string>
+
+    <string-array name="cities">
+        <item>Brussels</item>
+        <item>Ljubjana</item>
+        <item>Manchester</item>
+        <item>London</item>
+        <item>Miami</item>
+        <item>Rome</item>
+        <item>Venice</item>
+    </string-array>
+
+    <string-array name="way">
+        <item>One way</item>
+        <item>Two way</item>
+    </string-array>
+
+
 </resources>
