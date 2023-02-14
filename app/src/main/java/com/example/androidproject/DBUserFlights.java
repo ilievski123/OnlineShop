@@ -6,17 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBFlights extends SQLiteOpenHelper {
+public class DBUserFlights extends SQLiteOpenHelper {
 
-    public static final String DBName = "Flights.db";
+    public static final String DBName = "UserFlights.db";
 
-    public DBFlights(Context context) {
-        super(context, "Flights.db", null, 1);
+    public DBUserFlights(Context context) {
+        super(context, "UserFlights.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table flights(id TEXT primary key, destination TEXT, date TEXT, way TEXT, price TEXT)");
+        MyDB.execSQL("create Table flights(userName TEXT primary key, flightId TEXT, destination TEXT, date TEXT, way TEXT, price TEXT, longitude TEXT, latitude TEXT)");
     }
 
     @Override
@@ -25,14 +25,17 @@ public class DBFlights extends SQLiteOpenHelper {
         onCreate(MyDB);
     }
 
-    public Boolean insertData(String id, String destination, String date, String way, String price) {
+    public Boolean insertData(String userName, String flightId, String destination, String date, String way, String price, String longitude, String latitude) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id", id);
+        contentValues.put("userName", userName);
+        contentValues.put("flightId", flightId);
         contentValues.put("destination", destination);
         contentValues.put("date", date);
         contentValues.put("way", way);
         contentValues.put("price", price);
+        contentValues.put("longitude", longitude);
+        contentValues.put("latitude", latitude);
         long result = MyDB.insert("flights", null, contentValues);
         if(result == -1) return false;
         else return true;
@@ -62,14 +65,26 @@ public class DBFlights extends SQLiteOpenHelper {
         return cursor;
     }
 
-    Cursor readAllDataByDestination(String destination){
+    Cursor readAllDataByUsername(String userName){
         String query = "SELECT * FROM polls";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
         if(db != null){
-            cursor = db.rawQuery("SELECT * FROM " + "flights" + " where destination = '" + destination + "'" , null);
+            cursor = db.rawQuery("SELECT * FROM " + "flights" + " where userName = '" + userName + "'" , null);
         }
         return cursor;
     }
+
+    Cursor DeleteAllDataByFlightId(String flightId){
+        String query = "SELECT * FROM polls";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery("DELETE FROM " + "flights" + " where flightId = '" + flightId + "'" , null);
+        }
+        return cursor;
+    }
+
 }

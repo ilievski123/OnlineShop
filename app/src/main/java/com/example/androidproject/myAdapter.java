@@ -1,6 +1,7 @@
 package com.example.androidproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
     private List<Integer> myPictures;
     private int rowLayout;
     private Context mContext;
+    private String username;
 
     // Референца на views за секој податок
     // Комплексни податоци може да бараат повеќе views per item
@@ -36,9 +38,10 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
     }
 
     // конструктор
-    public myAdapter(List<String> myList, List<Integer> myPictures, int rowLayout, Context context) {
+    public myAdapter(List<String> myList, List<Integer> myPictures, String username, int rowLayout, Context context) {
         this.myList = myList;
         this.myPictures = myPictures;
+        this.username = username;
         this.rowLayout = rowLayout;
         this.mContext = context;
     }
@@ -57,11 +60,14 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
         Integer picture = myPictures.get(i);
         viewHolder.myName.setText(entry);
         viewHolder.Pic.setImageResource(picture);
-        viewHolder.Pic.setOnClickListener(new View.OnClickListener() {
+        viewHolder.myName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView tv = (TextView) v;
-                Toast.makeText(mContext, tv.getText(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), FlightsActivity.class);
+                intent.putExtra("allOrDest", "dest");
+                intent.putExtra("destination", entry);
+                intent.putExtra("username", username);
+                v.getContext().startActivity(intent);
             }
         });
     }

@@ -32,7 +32,8 @@ public class AdminActivity extends AppCompatActivity {
         seeFlights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(AdminActivity.this, "All flights", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), AdminFlightsActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -19,6 +19,7 @@ public class UserActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     myAdapter mAdapter;
     Button seeFlights, myFlights;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,9 @@ public class UserActivity extends AppCompatActivity {
         seeFlights = (Button) findViewById(R.id.buttonAllFlights);
         myFlights = (Button) findViewById(R.id.buttonMyFlights);
         TextView textView = findViewById(R.id.textView);
+
+        Intent i = getIntent();
+        userName = (String) i.getSerializableExtra("username");
 
         List<String> cities = Arrays.asList("Rome", "Manchester", "Brussels",
                 "Ljubjana", "Venice", "London", "Miami");
@@ -42,21 +46,26 @@ public class UserActivity extends AppCompatActivity {
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mAdapter = new myAdapter(cities, pictures, R.layout.my_row, this);
+        mAdapter = new myAdapter(cities, pictures, userName, R.layout.my_row, this);
 
         mRecyclerView.setAdapter(mAdapter);
 
         seeFlights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(UserActivity.this, "All flights", Toast.LENGTH_SHORT).show();
+               Intent intent = new Intent(getApplicationContext(), FlightsActivity.class);
+               intent.putExtra("allOrDest", "all");
+               intent.putExtra("username", userName);
+               startActivity(intent);
             }
         });
 
         myFlights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(UserActivity.this, "My flights", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), UserFlightsActivity.class);
+                intent.putExtra("username", userName);
+                startActivity(intent);
             }
         });
 
