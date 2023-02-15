@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FlightsActivity"
-    android:background="@color/purple_500">
+    android:background="@drawable/mainbackground">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidProject</string>
+    <string name="app_name">FlightBooking</string>
     <string name="choose_city">Choose a city</string>
     <string name="choose_way">Choose flight type</string>
 

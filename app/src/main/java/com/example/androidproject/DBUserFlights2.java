@@ -77,6 +77,17 @@ public class DBUserFlights2 extends SQLiteOpenHelper {
         return cursor;
     }
 
+    Cursor readAllDataByFlightId(String flightId){
+        String query = "SELECT * FROM polls";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery("SELECT * FROM " + "flights" + " where flightId = '" + flightId + "'" , null);
+        }
+        return cursor;
+    }
+
     Cursor DeleteAllDataByFlightId(String flightId){
         String query = "SELECT * FROM polls";
         SQLiteDatabase db = this.getReadableDatabase();

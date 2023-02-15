@@ -145,9 +145,9 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
             viewHolder.Btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = new Intent(v.getContext(), UserActivity.class);
-//                    intent.putExtra("flightId", flId);
-//                    v.getContext().startActivity(intent);
+                    Intent intent = new Intent(v.getContext(), FlightUsersActivity.class);
+                    intent.putExtra("flightId", flId);
+                    v.getContext().startActivity(intent);
                 }
             });
         }

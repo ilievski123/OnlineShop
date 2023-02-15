@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserActivity">
+    tools:context=".UserActivity"
+    android:background="@drawable/mainbackground">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:text="Log out"
-                android:textColor="@color/purple_500"
-                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.911"
                 app:layout_constraintStart_toStartOf="parent"
